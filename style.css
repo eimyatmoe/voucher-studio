@@ -1,0 +1,1398 @@
+
+/* =========================================
+   VOUCHER STUDIO
+   Dark Purple + Glassmorphism
+   Complete Responsive Stylesheet
+   ========================================= */
+
+/* 1. Global Reset */
+:root {
+    --bg: #8572a8;
+    --bg-soft: #68558e;
+    --surface: #201630;
+    --surface-light: #291d3c;
+    --purple: #9b6dff;
+    --purple-light: #bd9cff;
+    --purple-dark: #554178;
+    --text: #f8f5ff;
+    --text-soft: #c7badc;
+    --text-muted: #9687ac;
+    --border: rgba(142, 109, 214, 0.17);
+    --success: #55d6a0;
+    --warning: #f4c66b;
+    --danger: #ff7c9c;
+    --radius: 18px;
+    --shadow: 0 12px 35px rgba(117, 14, 14, 0.22);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    min-height: 100%;
+    scroll-behavior: smooth;
+    scroll-padding-top: 24px;
+}
+
+body {
+    min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+    color: var(--text);
+    background:
+        radial-gradient(
+            circle at 85% 5%,
+            rgba(120, 69, 190, 0.17),
+            transparent 30% 
+        ),
+        radial-gradient(
+            circle at 10% 80%,
+            rgba(91, 48, 142, 0.13),
+            transparent 28%
+        ),
+        var(--bg);
+    font-family:
+        Inter,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+a:focus-visible {
+    outline: 2px solid var(--purple-light);
+    outline-offset: 3px;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+p {
+    overflow-wrap: anywhere;
+}
+
+::selection {
+    color: white;
+    background: var(--purple-dark);
+}
+
+/* 2. Main Application Layout */
+.app-container {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* 3. Sidebar */
+.sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    height: 100vh;
+    height: 100dvh;
+    padding: 30px 18px 20px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: rgba(48, 34, 78, 0.94);
+    border-right: 1px solid var(--border);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+    margin-bottom: 42px;
+    padding: 0 7px;
+}
+
+.brand-icon {
+    display: grid;
+    place-items: center;
+    flex: 0 0 43px;
+    width: 43px;
+    height: 43px;
+    color: white;
+    background: linear-gradient(
+        135deg,
+        #bd9cff,
+        #7542cf
+    );
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 14px;
+    box-shadow: 0 6px 20px rgba(137, 81, 229, 0.3);
+}
+
+.brand-svg {
+    width: 25px;
+    height: 25px;
+}
+
+.brand h2 {
+    min-width: 0;
+    color: var(--text);
+    font-size: 18px;
+    font-weight: 750;
+    letter-spacing: -0.5px;
+    line-height: 1.35;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    width: 100%;
+}
+
+.sidebar-nav .nav-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 49px;
+    padding: 13px 15px;
+    color: var(--text-soft);
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 550;
+    line-height: 1.4;
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.sidebar-nav .nav-link:hover {
+    color: white;
+    background: rgba(155, 109, 255, 0.09);
+    border-color: rgba(155, 109, 255, 0.12);
+}
+
+.sidebar-nav .nav-link.active {
+    color: white;
+    background: linear-gradient(
+        110deg,
+        rgba(155, 109, 255, 0.23),
+        rgba(113, 66, 196, 0.12)
+    );
+    border-color: rgba(177, 139, 255, 0.23);
+}
+
+.sidebar-nav .nav-link.active::before {
+    position: absolute;
+    top: 10px;
+    bottom: 10px;
+    left: -1px;
+    width: 3px;
+    background: var(--purple-light);
+    border-radius: 0 4px 4px 0;
+    content: "";
+}
+
+.sidebar-footer {
+    margin-top: auto;
+    padding: 22px 8px 4px;
+    border-top: 1px solid var(--border);
+}
+
+.sidebar-footer p {
+    margin-bottom: 4px;
+    color: var(--text-soft);
+    font-size: 12px;
+    font-weight: 650;
+}
+
+.sidebar-footer small {
+    display: block;
+    color: var(--text-muted);
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+/* 4. Main Content */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-width: 0;
+    min-height: 100vh;
+    margin-left: 250px;
+    padding: 28px;
+}
+
+/* 5. Topbar */
+.main-content > .topbar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    width: 100%;
+    min-width: 0;
+    min-height: 112px;
+    margin-bottom: 28px;
+    padding: 24px 28px;
+    background:
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(168, 139, 250, 0.19),
+            transparent 45%
+        ),
+        linear-gradient(
+            120deg,
+            #211438,
+            #352052 60%,
+            #432766
+        );
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+}
+
+.main-content > .topbar > div {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.main-content > .topbar h1 {
+    margin-bottom: 6px;
+    color: white;
+    font-size: clamp(23px, 2vw, 29px);
+    font-weight: 750;
+    line-height: 1.35;
+    letter-spacing: -0.7px;
+}
+
+.main-content > .topbar p {
+    color: var(--text-soft);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.primary-button,
+.secondary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 46px;
+    max-width: 100%;
+    padding: 11px 19px;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 650;
+    line-height: 1.4;
+    text-align: center;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.primary-button {
+    flex: 0 0 auto;
+    color: white;
+    background: linear-gradient(
+        135deg,
+        #a875ff,
+        #7041c5
+    );
+    border-color: rgba(255, 255, 255, 0.17);
+    box-shadow: 0 6px 18px rgba(124, 58, 237, 0.22);
+}
+
+.primary-button:hover {
+    background: linear-gradient(
+        135deg,
+        #bb94ff,
+        #8050d8
+    );
+    box-shadow: 0 8px 23px rgba(124, 58, 237, 0.32);
+    transform: translateY(-1px);
+}
+
+.secondary-button {
+    color: var(--text-soft);
+    background: rgba(255, 255, 255, 0.035);
+    border-color: var(--border);
+}
+
+.secondary-button:hover {
+    color: white;
+    background: rgba(155, 109, 255, 0.1);
+    border-color: rgba(177, 139, 255, 0.35);
+}
+
+/* 6. Section Visibility
+   JavaScript controls which section is visible. */
+.dashboard-section,
+.content-section {
+    width: 100%;
+    min-width: 0;
+    animation: section-appear 0.22s ease;
+}
+
+.content-section {
+    display: none;
+}
+
+@keyframes section-appear {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 7. Dashboard Welcome */
+.welcome-section {
+    position: relative;
+    margin-bottom: 25px;
+    padding: 27px 28px;
+    overflow: hidden;
+    background:
+        radial-gradient(
+            circle at 95% 5%,
+            rgba(175, 133, 255, 0.13),
+            transparent 35%
+        ),
+        linear-gradient(
+            120deg,
+            rgba(43, 29, 63, 0.95),
+            rgba(32, 22, 49, 0.92)
+        );
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+
+.welcome-section h1 {
+    margin-bottom: 8px;
+    color: white;
+    font-size: clamp(23px, 2.4vw, 30px);
+    font-weight: 750;
+    line-height: 1.35;
+    letter-spacing: -0.7px;
+}
+
+.welcome-section p {
+    max-width: 580px;
+    color: var(--text-soft);
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+/* 8. Dashboard Statistics */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+    width: 100%;
+    min-width: 0;
+}
+
+.stat-card {
+    position: relative;
+    min-width: 0;
+    min-height: 158px;
+    padding: 21px;
+    overflow: hidden;
+    background: linear-gradient(
+        145deg,
+        rgba(42, 29, 61, 0.95),
+        rgba(29, 20, 43, 0.96)
+    );
+    border: 1px solid var(--border);
+    border-radius: 17px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.stat-card::after {
+    position: absolute;
+    top: -35px;
+    right: -35px;
+    width: 100px;
+    height: 100px;
+    background: rgba(155, 109, 255, 0.07);
+    border-radius: 50%;
+    content: "";
+    pointer-events: none;
+}
+
+.stat-card:hover {
+    border-color: rgba(177, 139, 255, 0.35);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+}
+
+.stat-card p {
+    margin-bottom: 17px;
+    color: var(--text-soft);
+    font-size: 12px;
+    font-weight: 550;
+    line-height: 1.5;
+}
+
+.stat-card h3 {
+    margin-bottom: 9px;
+    color: white;
+    font-size: clamp(27px, 2.5vw, 35px);
+    font-weight: 550;
+    line-height: 1.2;
+    letter-spacing: -1px;
+}
+
+.stat-card span {
+    display: block;
+    color: var(--text-muted);
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+/* 9. Section Headings */
+.section-heading {
+    margin-bottom: 23px;
+}
+
+.section-heading h2 {
+    margin-bottom: 6px;
+    color: hwb(264 93% 5%);
+    font-size: clamp(23px, 2vw, 28px);
+    font-weight: 750;
+    line-height: 1.4;
+    letter-spacing: -0.5px;
+}
+
+.section-heading p {
+    color: hwb(264 93% 5%);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+/* 10. Create Voucher Layout */
+.voucher-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+    align-items: start;
+    gap: 22px;
+    width: 100%;
+    min-width: 0;
+}
+
+.voucher-form,
+.preview-panel {
+    min-width: 0;
+    padding: 25px;
+    background: linear-gradient(
+        145deg,
+        rgba(165, 136, 208, 0.96),
+        rgba(29, 3, 71, 0.97)
+    );
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.voucher-form {
+    display: flex;
+    flex-direction: column;
+    gap: 19px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+.form-group label {
+    color: #f3f1f7;
+    font-size: 12px;
+    font-weight: 650;
+    line-height: 1.5;
+}
+
+.form-group input,
+.form-group select,
+.toolbar input,
+.toolbar select {
+    width: 100%;
+    min-width: 0;
+    min-height: 46px;
+    padding: 12px 13px;
+    color: #ffffff;
+    background: rgba(15, 10, 25, 0.65);
+    border: 1px solid rgba(205, 180, 255, 0.19);
+    border-radius: 10px;
+    outline: none;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.form-group input::placeholder,
+.toolbar input::placeholder {
+    color: #eeeaf5;
+    opacity: 1;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.toolbar input:focus,
+.toolbar select:focus {
+    background: rgba(18, 12, 29, 0.9);
+    border-color: var(--purple);
+    box-shadow: 0 0 0 3px rgba(155, 109, 255, 0.12);
+}
+
+.form-group select option,
+.toolbar select option {
+    color: white;
+    background: #241832;
+}
+
+.form-group input[type="date"] {
+    color-scheme: dark;
+}
+
+.form-group small {
+    color: cornsilk;
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+    min-width: 0;
+}
+
+.form-row > .form-group {
+    min-width: 0;
+}
+
+.form-message {
+    display: none;
+    padding: 11px 13px;
+    color: var(--text-soft);
+    background: rgba(49, 37, 74, 0.08);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 12px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+.form-message:not(:empty) {
+    display: block;
+}
+
+
+.form-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 14px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+}
+
+.form-actions button {
+    min-width: 150px;
+    min-height: 48px;
+    padding: 12px 22px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+/* Clear Form Button */
+.form-actions .secondary-button {
+    color: #DCCBFA;
+    background: rgba(168, 117, 255, 0.08);
+    border: 1px solid rgba(190, 157, 255, 0.3);
+}
+
+.form-actions .secondary-button:hover {
+    color: #FFFFFF;
+    background: rgba(168, 117, 255, 0.2);
+    border-color: #B78AFF;
+    transform: translateY(-2px);
+}
+
+/* Generate Vouchers Button */
+.form-actions .primary-button {
+    color: #FFFFFF;
+    background: linear-gradient(135deg, #B78AFF, #8050D8);
+    border: 1px solid rgba(225, 207, 255, 0.4);
+    box-shadow: 0 5px 16px rgba(139, 92, 246, 0.25);
+}
+
+.form-actions .primary-button:hover {
+    background: linear-gradient(135deg, #C6A5FF, #9258F2);
+    box-shadow: 0 8px 22px rgba(139, 92, 246, 0.4);
+    transform: translateY(-2px);
+}
+
+.form-actions button:active {
+    transform: scale(0.98);
+}
+
+.form-actions button:focus-visible {
+    outline: 2px solid #D7BEFF;
+    outline-offset: 3px;
+}
+
+/* 11. Live Voucher Preview */
+.preview-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.preview-panel > h3 {
+    color: rgb(242, 238, 244);
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.preview-description {
+    margin-bottom: 12px;
+    color: white;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.voucher-preview {
+    width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    color: white;
+    background:
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(62, 44, 96, 0.25),
+            transparent 43%
+        ),
+        linear-gradient(
+            145deg,
+            #5d239b,
+            #241433 70%,
+            #674e88
+        );
+    border: 1px solid rgba(205, 180, 255, 0.27);
+    border-radius: 17px;
+    box-shadow: 0 15px 32px rgba(0, 0, 0, 0.23);
+}
+
+.preview-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 18px 18px 15px;
+    border-bottom: 1px dashed rgba(221, 203, 255, 0.3);
+}
+
+.preview-top > span:first-child {
+    color: #eee4ff;
+    font-size: 10px;
+    font-weight: 750;
+    letter-spacing: 1.1px;
+    overflow-wrap: anywhere;
+}
+
+.preview-badge {
+    flex: 0 0 auto;
+    padding: 5px 8px;
+    color: #f3eaff;
+    background: rgba(54, 35, 92, 0.16);
+    border: 1px solid #d8d4e03b;
+    border-radius: 7px;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+}
+
+.preview-body {
+    padding: 25px 20px;
+    text-align: center;
+}
+
+.preview-label {
+    margin-bottom: 10px;
+    color: #f3f2f6;
+    font-size: 10px;
+    font-weight: 650;
+    letter-spacing: 1.5px;
+}
+
+.preview-body h2 {
+    margin-bottom: 13px;
+    color: white;
+    font-size: clamp(35px, 4vw, 48px);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -1.4px;
+    overflow-wrap: anywhere;
+}
+
+.preview-body h3 {
+    margin-bottom: 13px;
+    color: white;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.45;
+}
+
+.preview-body > p:not(.preview-label) {
+    margin-top: 7px;
+    color: white;
+    font-size: 11px;
+    line-height: 1.7;
+}
+
+.preview-bottom {
+    padding: 13px 15px;
+    background: rgba(111, 65, 204, 0.2);
+    border-top: 1px dashed rgba(221, 203, 255, 0.3);
+    text-align: center;
+}
+
+.preview-bottom span {
+    color: #efedf1;
+    font-size: 10px;
+    line-height: 1.6;
+}
+
+/* 12. Voucher List Toolbar */
+.toolbar {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    width: 100%;
+    min-width: 0;
+    margin-bottom: 20px;
+}
+
+.toolbar input {
+    flex: 1 1 320px;
+}
+
+.toolbar select {
+    flex: 0 1 190px;
+}
+
+/* 13. Voucher Table */
+.table-wrapper {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    background: rgba(35, 24, 51, 0.88);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    scrollbar-width: thin;
+    scrollbar-color: #63438b #21162f;
+}
+
+.voucher-table {
+    width: 100%;
+    min-width: 760px;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.voucher-table th,
+.voucher-table td {
+    padding: 16px 17px;
+    border-bottom: 1px solid rgba(205, 180, 255, 0.1);
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.voucher-table th {
+    color: #c8b5e5;
+    background: rgba(155, 109, 255, 0.08);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.35px;
+}
+
+.voucher-table td {
+    color: #e6ddf2;
+    font-size: 12px;
+}
+
+.voucher-table tbody tr {
+    transition: background 0.18s ease;
+}
+
+.voucher-table tbody tr:hover {
+    background: rgba(155, 109, 255, 0.06);
+}
+
+.voucher-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Common Status Badges
+   Use these classes in JavaScript if needed. */
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 9px;
+    border: 1px solid transparent;
+    border-radius: 7px;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.status-badge.active {
+    color: var(--success);
+    background: rgba(85, 214, 160, 0.09);
+    border-color: rgba(85, 214, 160, 0.18);
+}
+
+.status-badge.scheduled {
+    color: var(--warning);
+    background: rgba(244, 198, 107, 0.09);
+    border-color: rgba(244, 198, 107, 0.18);
+}
+
+.status-badge.expired {
+    color: var(--danger);
+    background: rgba(255, 124, 156, 0.09);
+    border-color: rgba(255, 124, 156, 0.18);
+}
+
+/* 14. Empty State */
+.empty-state {
+    padding: 42px 20px;
+    text-align: center;
+}
+
+.empty-state h3 {
+    margin-bottom: 7px;
+    color: #1b0a32;
+    font-size: 19px;
+    font-weight: 700;
+}
+
+.empty-state p {
+    color:#1b0a32;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+/* 15. Footer */
+.app-footer {
+    width: 100%;
+    margin-top: auto;
+    padding: 30px 0 4px;
+    text-align: center;
+}
+
+.app-footer p {
+    color: rgb(62, 28, 83);
+    font-size: 20px;
+    line-height: 1.7;
+}
+
+/* =========================================
+   RESPONSIVE BREAKPOINTS
+   ========================================= */
+
+/* Laptop and small desktop */
+@media (max-width: 1199px) {
+    .main-content {
+        padding: 24px;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .voucher-layout {
+        grid-template-columns:
+            minmax(0, 1fr)
+            minmax(250px, 0.85fr);
+        gap: 17px;
+    }
+
+    .voucher-form,
+    .preview-panel {
+        padding: 21px;
+    }
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+    .sidebar {
+        width: 210px;
+        padding: 25px 13px 18px;
+    }
+
+    .brand {
+        gap: 9px;
+        padding: 0 4px;
+    }
+
+    .brand h2 {
+        font-size: 16px;
+    }
+
+    .main-content {
+        margin-left: 210px;
+        padding: 20px;
+    }
+
+    .main-content > .topbar {
+        min-height: 100px;
+        gap: 16px;
+        padding: 21px;
+    }
+
+    .main-content > .topbar h1 {
+        font-size: 24px;
+    }
+
+    .voucher-layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .preview-panel {
+        width: 100%;
+    }
+
+    .voucher-preview {
+        max-width: 460px;
+        align-self: center;
+    }
+}
+
+/* Small tablet and large mobile */
+@media (max-width: 680px) {
+    .app-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sidebar {
+        position: relative;
+        inset: auto;
+        z-index: 10;
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        padding: 15px 17px;
+        overflow: visible;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .brand {
+        margin-bottom: 15px;
+        padding: 0 2px;
+    }
+
+    .brand-icon {
+        flex-basis: 38px;
+        width: 38px;
+        height: 38px;
+        border-radius: 12px;
+    }
+
+    .brand-svg {
+        width: 23px;
+        height: 23px;
+    }
+
+    .brand h2 {
+        font-size: 17px;
+    }
+
+    .sidebar-nav {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 7px;
+    }
+
+    .sidebar-nav .nav-link {
+        justify-content: center;
+        min-width: 0;
+        min-height: 43px;
+        padding: 9px 5px;
+        font-size: 11px;
+        line-height: 1.4;
+        text-align: center;
+        overflow-wrap: anywhere;
+    }
+
+    .sidebar-nav .nav-link.active::before {
+        top: auto;
+        right: 20%;
+        bottom: -1px;
+        left: 20%;
+        width: 60%;
+        height: 3px;
+        border-radius: 4px 4px 0 0;
+    }
+
+    .sidebar-footer {
+        display: none;
+    }
+
+    .main-content {
+        width: 100%;
+        min-width: 0;
+        min-height: 0;
+        margin-left: 0;
+        padding: 18px;
+    }
+
+    .main-content > .topbar {
+        position: relative;
+        inset: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 16px;
+        width: 100%;
+        min-height: 0;
+        margin-bottom: 21px;
+        padding: 21px;
+        border-radius: 16px;
+        transform: none;
+    }
+
+    .main-content > .topbar > div {
+        width: 100%;
+        flex: none;
+    }
+
+    .main-content > .topbar h1 {
+        font-size: 23px;
+    }
+
+    .main-content > .topbar p {
+        font-size: 12px;
+    }
+
+    .main-content > .topbar .primary-button {
+        width: 100%;
+        min-height: 45px;
+        white-space: normal;
+    }
+
+    .welcome-section {
+        margin-bottom: 18px;
+        padding: 22px;
+    }
+
+    .welcome-section h1 {
+        font-size: 24px;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .stat-card {
+        min-height: 138px;
+        padding: 16px;
+    }
+
+    .stat-card p {
+        margin-bottom: 12px;
+        font-size: 11px;
+    }
+
+    .stat-card h3 {
+        font-size: 30px;
+    }
+
+    .stat-card span {
+        font-size: 10px;
+    }
+
+    .section-heading {
+        margin-bottom: 18px;
+    }
+
+    .section-heading h2 {
+        font-size: 23px;
+    }
+
+    .voucher-form,
+    .preview-panel {
+        padding: 19px;
+    }
+
+    .toolbar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .toolbar input,
+    .toolbar select {
+        width: 100%;
+        max-width: none;
+        flex: 1 1 auto;
+    }
+
+    .table-wrapper {
+        border-radius: 12px;
+    }
+
+    .app-footer {
+        padding-top: 25px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .sidebar {
+        padding: 13px 12px;
+    }
+
+    .brand {
+        margin-bottom: 13px;
+    }
+
+    .sidebar-nav {
+        gap: 5px;
+    }
+
+    .sidebar-nav .nav-link {
+        min-height: 42px;
+        padding: 8px 3px;
+        font-size: 10px;
+    }
+
+    .main-content {
+        padding: 14px;
+    }
+
+    .main-content > .topbar {
+        gap: 14px;
+        padding: 18px;
+    }
+
+    .main-content > .topbar h1 {
+        font-size: 22px;
+    }
+
+    .welcome-section {
+        padding: 19px;
+    }
+
+    .welcome-section h1 {
+        font-size: 22px;
+    }
+
+    .welcome-section p {
+        font-size: 12px;
+    }
+
+    .stats-grid {
+        gap: 9px;
+    }
+
+    .stat-card {
+        min-height: 130px;
+        padding: 13px;
+        border-radius: 14px;
+    }
+
+    .stat-card p {
+        font-size: 10px;
+    }
+
+    .stat-card h3 {
+        font-size: 27px;
+    }
+
+    .stat-card span {
+        font-size: 10px;
+        line-height: 1.5;
+    }
+
+    .voucher-form,
+    .preview-panel {
+        padding: 16px;
+        border-radius: 15px;
+    }
+
+    .voucher-form {
+        gap: 16px;
+    }
+
+    .form-row {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
+    }
+
+    .form-actions {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+    .form-actions button {
+        width: 100%;
+    }
+
+    .preview-body {
+        padding: 22px 14px;
+    }
+
+    .preview-body h2 {
+        font-size: 37px;
+    }
+
+    .preview-body h3 {
+        font-size: 15px;
+    }
+
+    .preview-top {
+        padding: 15px 12px;
+    }
+
+    .preview-top > span:first-child {
+        font-size: 9px;
+        letter-spacing: 0.7px;
+    }
+
+    .preview-badge {
+        padding: 5px 6px;
+        font-size: 8px;
+    }
+
+    .empty-state {
+        padding: 32px 12px;
+    }
+}
+
+/* Very small mobile */
+@media (max-width: 360px) {
+    .main-content {
+        padding: 11px;
+    }
+
+    .sidebar {
+        padding: 12px 9px;
+    }
+
+    .sidebar-nav .nav-link {
+        font-size: 9px;
+    }
+
+    .main-content > .topbar {
+        padding: 15px;
+    }
+
+    .main-content > .topbar h1 {
+        font-size: 20px;
+    }
+
+    .welcome-section {
+        padding: 16px;
+    }
+
+    .welcome-section h1 {
+        font-size: 20px;
+    }
+
+    .stats-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .stat-card {
+        min-height: 112px;
+        padding: 16px;
+    }
+
+    .stat-card h3 {
+        font-size: 29px;
+    }
+
+    .voucher-form,
+    .preview-panel {
+        padding: 13px;
+    }
+
+    .form-group input,
+    .form-group select {
+        padding: 11px;
+        font-size: 13px;
+    }
+}
+
+/* Accessibility: reduce motion when requested */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
